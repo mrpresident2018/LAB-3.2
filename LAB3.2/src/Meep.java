@@ -6,14 +6,11 @@ public class Meep
 	{
 		
 	}
-	public static int p(int[]L) //Partition
-	{
-		
-	}
+	
 	public static void MergeSort(int arr[],int l, int r)
 	{
 		
-	}*/
+	}
 	public static void main (String [] args)
 	{
 		String [] a = {"ashdf", "jhbfas" , "asufgaukdf" , "hsdf"};
@@ -41,7 +38,7 @@ public class Meep
 			merge(array, low, middle, high);
 		}
 	}
-	/*static void merge (String array, int low, int middle, int high)
+	static void merge (String array, int low, int middle, int high)
 	{
 		int[] helper = new int[array.length()];
 		for (int i = low; i <= high; i++)
@@ -71,9 +68,39 @@ public class Meep
 		{
 			array[current+i] = helper[helperLeft+i];
 		}
-	}*/
+	}
 // https://stackoverflow.com/questions/20795158/sorting-names-using-merge-sort
-
-
-
+*/
+	public static String p(String[]L) //Partition
+	{
+		int i = 0;
+		int j = L.length;
+		int pivot = j/2;
+		String Pv = L[pivot];
+		
+		while (i <= j)
+		{
+			while (L[i].compareTo(Pv) == 0)
+			{
+				i++;
+			}
+			while (L[j].compareTo(Pv) == 0)
+			{
+				j--;
+			}
+			if (i <= j)
+			{
+				swap (L, i, j);
+				i++;
+				j--;
+			}
+		}
+		return i;
+	}
+	private static void swap (String [] L, int i, int j)
+	{
+		String t = L[i];
+		L[i] = L[j];
+		L[j] = t;
+	}
 }
