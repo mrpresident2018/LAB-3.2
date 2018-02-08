@@ -71,6 +71,35 @@ public class Meep
 	}
 // https://stackoverflow.com/questions/20795158/sorting-names-using-merge-sort
 */
+	public static void main (String[] args)
+	{
+		
+	}
+	
+	public static void merge (String []L1, String [] L2)
+	{
+		String [] S = new String [(L1.length)+ (L2.length)]; ]
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		
+		while (a < S.length - 1)
+		{
+			if (L1[b].compareTo(L2[c]) > 0)
+			{
+				S[a] = L2[c];
+				a++;
+				c++;
+			}
+			else
+			{
+				S[a] = L1[b];
+				a++;
+				b++;
+			}
+		}
+		System.out.print(java.util.Arrays.toString(S));
+	}
 	public static String p(String[]L) //Partition
 	{
 		int i = 0;
