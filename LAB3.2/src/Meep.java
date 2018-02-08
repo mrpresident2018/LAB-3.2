@@ -78,7 +78,7 @@ public class Meep
 	
 	public static void merge (String []L1, String [] L2)
 	{
-		String [] S = new String [(L1.length)+ (L2.length)]; ]
+		String [] S = new String [(L1.length)+ (L2.length)]; 
 		int a = 0;
 		int b = 0;
 		int c = 0;
@@ -100,7 +100,7 @@ public class Meep
 		}
 		System.out.print(java.util.Arrays.toString(S));
 	}
-	public static String p(String[]L) //Partition
+	public static int p(String[]L) //Partition
 	{
 		int i = 0;
 		int j = L.length;
@@ -124,7 +124,7 @@ public class Meep
 				j--;
 			}
 		}
-		return i;
+		return pivot;
 	}
 	private static void swap (String [] L, int i, int j)
 	{
