@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 //Saurabh Bansal
 public class Meep 
 {
@@ -73,10 +75,27 @@ public class Meep
 */
 	public static void main (String[] args)
 	{
-		
-	}
+	String []L1 = {"apple" , "banana", "microsoft", "zorro" , "cucumuber" , "cake"};
+	//String [] L2 = {"cherry" , "mahogany" , "oreos" , "pinata"};
 	
-	public static void merge (String []L1, String [] L2)
+	/*long start = System.nanoTime();
+	String[] mergeResult = merge(L1, L2);
+	long end = System.nanoTime();
+	long time = end - start;
+	System.out.println();
+	System.out.println(Arrays.toString(mergeResult));*/
+	
+	long start = System.nanoTime();
+	String pivotFinalPos = p(L1);
+	long end = System.nanoTime();
+	long time = end - start;
+	System.out.println("Partition test took: " + time + " nanoseconds");
+	System.out.println("Final Pivot Position: " + pivotFinalPos);
+	System.out.println(Arrays.toString(L1));
+	}
+	//("Merge test took:" + time + " nanoseconds");
+	
+	/*public static String[] merge (String []L1, String [] L2)
 	{
 		String [] S = new String [(L1.length)+ (L2.length)]; 
 		int a = 0;
@@ -98,33 +117,38 @@ public class Meep
 				b++;
 			}
 		}
-		System.out.print(java.util.Arrays.toString(S));
+		return S;
 	}
-	public static int p(String[]L) //Partition
+	*/
+	public static int p(int[]L) //Partition
 	{
-		int i = 0;
-		int j = L.length;
-		int pivot = j/2;
-		String Pv = L[pivot];
-		
-		while (i <= j)
-		{
-			while (L[i].compareTo(Pv) == 0)
-			{
-				i++;
-			}
-			while (L[j].compareTo(Pv) == 0)
-			{
-				j--;
-			}
-			if (i <= j)
-			{
-				swap (L, i, j);
-				i++;
-				j--;
-			}
-		}
-		return pivot;
+		int B = L[0];    
+	    int T = 0;
+	    int n = 0;
+	    int x = L.length -1;
+
+	    for(int i = 1; i < L.length; i++)
+	    {
+	        if( L[i] <= B)
+	        {
+	            T = L[i];
+	            L[i] = B;
+	            L[i-1] = T;             
+	            n = i;
+	        } 
+	        else if(L[i] > B && x > i)
+	        {
+	            T = L[i];
+	            L[i] = L[x];
+	            L[x] = T;
+	            x = 1;
+	            i--;
+	        }
+	    }
+	    
+	    System.out.println(java.util.Arrays.toString(L));
+	    System.out.println(n);
+	    return n;
 	}
 	private static void swap (String [] L, int i, int j)
 	{
@@ -133,3 +157,4 @@ public class Meep
 		L[j] = t;
 	}
 }
+//https://github.com/SauravHoss/imsotired/blob/master/Lab3.2/src/tester.java
