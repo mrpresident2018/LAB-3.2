@@ -3,7 +3,6 @@ import java.util.Arrays;
 //Saurabh Bansal
 public class Meep 
 {
-	//Pre-Condition Both List1 and List2 contain Strings in alphabetical Order from a to Z
 	/*public static int[] m(int[]L1, String[]L2) //Merge
 	{
 		
@@ -71,55 +70,60 @@ public class Meep
 			array[current+i] = helper[helperLeft+i];
 		}
 	}
-// https://stackoverflow.com/questions/20795158/sorting-names-using-merge-sort
+https://stackoverflow.com/questions/20795158/sorting-names-using-merge-sort
 */
+	
+	
+	//Pre-Condition Both List1 and List2 contain Strings in alphabetical Order from a to Z
 	public static void main (String[] args)
 	{
 	String []L1 = {"apple" , "banana", "microsoft", "zorro" , "cucumuber" , "cake"};
-	//String [] L2 = {"cherry" , "mahogany" , "oreos" , "pinata"};
+	String [] L2 = {"cherry" , "mahogany" , "oreos" , "pinata"};
+	int [] L3 = {3,2,4,65,23,145,66,234,1234,6,24,53};
 	
-	/*long start = System.nanoTime();
+	//Merge Test
+	long start = System.nanoTime();
 	String[] mergeResult = merge(L1, L2);
 	long end = System.nanoTime();
 	long time = end - start;
 	System.out.println();
-	System.out.println(Arrays.toString(mergeResult));*/
+	System.out.println(Arrays.toString(mergeResult));
 	
-	long start = System.nanoTime();
-	String pivotFinalPos = p(L1);
-	long end = System.nanoTime();
-	long time = end - start;
+	//Partition
+	start = System.nanoTime();
+	int pivotFinalPos = p(L3);
+	end = System.nanoTime();
+	time = end - start;
 	System.out.println("Partition test took: " + time + " nanoseconds");
 	System.out.println("Final Pivot Position: " + pivotFinalPos);
 	System.out.println(Arrays.toString(L1));
+	System.out.println("Merge test took:" + time + " nanoseconds");
 	}
-	//("Merge test took:" + time + " nanoseconds");
 	
-	/*public static String[] merge (String []L1, String [] L2)
+	public static String[] merge(String [] L1, String [] L2) 
 	{
-		String [] S = new String [(L1.length)+ (L2.length)]; 
+		String [] f = new String [(L1.length) + (L2.length)-1]; 
 		int a = 0;
 		int b = 0;
 		int c = 0;
-		
-		while (a < S.length - 1)
+		while(b < L1.length && c < L2.length && a < f.length) 
 		{
-			if (L1[b].compareTo(L2[c]) > 0)
+			if (L1[b].compareTo(L2[c]) >= 0)
 			{
-				S[a] = L2[c];
+				f[a] = L2[c];
 				a++;
 				c++;
-			}
+			}				
 			else
 			{
-				S[a] = L1[b];
+				f[a] = L1[b];
 				a++;
 				b++;
 			}
 		}
-		return S;
+		return f;
 	}
-	*/
+	
 	public static int p(int[]L) //Partition
 	{
 		int B = L[0];    
@@ -129,14 +133,12 @@ public class Meep
 
 	    for(int i = 1; i < L.length; i++)
 	    {
-	        if( L[i] <= B)
+	        if( L[i] <= (B))
 	        {
-	            T = L[i];
-	            L[i] = B;
-	            L[i-1] = T;             
+	            swap(L, i, B);           
 	            n = i;
 	        } 
-	        else if(L[i] > B && x > i)
+	        else if(L[i] > (B) && x > i)
 	        {
 	            T = L[i];
 	            L[i] = L[x];
@@ -150,11 +152,11 @@ public class Meep
 	    System.out.println(n);
 	    return n;
 	}
-	private static void swap (String [] L, int i, int j)
+	private static void swap (int [] L , int i , int b)
 	{
-		String t = L[i];
-		L[i] = L[j];
-		L[j] = t;
+		int t = L[i];
+		L[i] = L[b];
+		L[b] = t;
 	}
 }
 //https://github.com/SauravHoss/imsotired/blob/master/Lab3.2/src/tester.java
